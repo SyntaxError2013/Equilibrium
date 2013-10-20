@@ -3,6 +3,7 @@ package in.co.sdslabs.sketchbook;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -123,4 +124,10 @@ public class DrawingView extends View{
 		else drawPaint.setXfermode(null);
 		}
 	
+	public void setColor(String newColor){
+		//set color
+		invalidate();
+		color = Color.parseColor(newColor);
+		drawPaint.setColor(color);
+		}
 }
