@@ -12,6 +12,12 @@
 	<string name="sml">Small</string>
 	<string name="med">Medium</string>
 	<string name="lrg">Large</string>
+	<string name="blue">Blue</string>
+	<string name="pink">Pink</string>
+	<string name="green">Green</string>
+	<string name="red">Red</string>
+	<string name="black">Black</string>
+	<string name="white">White</string>
     
 
 </resources>
