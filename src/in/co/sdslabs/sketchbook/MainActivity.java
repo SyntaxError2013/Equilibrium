@@ -1,12 +1,19 @@
 package in.co.sdslabs.sketchbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Random;
 import java.util.UUID;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +51,28 @@ public class MainActivity extends Activity implements OnClickListener{
 		eraser.setOnClickListener(this);
 		
 		drawView.setBrushSize(mediumBrush);
+	}
+	
+	private void SaveImage(Bitmap finalBitmap) {
+
+	    String root = Environment.getExternalStorageDirectory().toString();
+	    File sketchbk = new File("/sdcard/SketchBook");
+    	sketchbk.mkdirs();
+    	Random generator = new Random();
+    	int n = 10000;
+    	n = generator.nextInt(n);
+    	String enname = "Image-"+ n +".jpg";
+    	File file = new File (sketchbk,enname);
+    	if(file.exists()) file.delete();
+	    try {
+	           FileOutputStream out = new FileOutputStream(file);
+	           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+	           out.flush();
+	           out.close();
+
+	    } catch (Exception e) {
+	           e.printStackTrace();
+	    }
 	}
 
 	@Override
@@ -101,20 +130,25 @@ public class MainActivity extends Activity implements OnClickListener{
 			    	
 			    	// While doing new input the name of the string
 			    	// Custom Location to be done 
-			    	String imgSaved = MediaStore.Images.Media.insertImage(
+			    	/*String imgSaved = MediaStore.Images.Media.insertImage(
 			    		    getContentResolver(), drawView.getDrawingCache(),
-			    		    UUID.randomUUID().toString()+".png", "drawing");
+			    		    UUID.randomUUID().toString()+".png", "drawing");*/
+			    	SaveImage(drawView.getDrawingCache());
+			    	sendBroadcast(new Intent(
+			    			Intent.ACTION_MEDIA_MOUNTED,
+			    			            Uri.parse("file://" + Environment.getExternalStorageDirectory())));
 			    	
-			    	if(imgSaved!=null){
+			    	
+			    	//if(imgSaved!=null){
 			    	    Toast savedToast = Toast.makeText(getApplicationContext(),
 			    	        "Drawing saved to Gallery!", Toast.LENGTH_SHORT);
 			    	    savedToast.show();
-			    	}
-			    	else{
+			    	//}
+			    	/*else{
 			    	    Toast unsavedToast = Toast.makeText(getApplicationContext(),
 			    	        "Oops! Image could not be saved.", Toast.LENGTH_SHORT);
 			    	    unsavedToast.show();
-			    	}
+			    	}*/
 			    }
 			});
 			saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
