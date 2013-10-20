@@ -9,6 +9,9 @@
 	<string name="paint">Paint</string>
 	<string name="toolbox">Toolbox</string>
 	<string name="save">Save</string>
+	<string name="sml">Small</string>
+	<string name="med">Medium</string>
+	<string name="lrg">Large</string>
     
 
 </resources>
