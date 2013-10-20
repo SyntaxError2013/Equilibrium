@@ -19,7 +19,7 @@ public class DrawingView extends View{
 	//Initialise required variables
 	private Path drawPath;
 	private Paint drawPaint , canvasPaint;
-	private int color = 0xFF660000;
+	private int color = 0x000000;
 	private Canvas canvas;
 	private Bitmap bmp;
 	
@@ -35,7 +35,7 @@ public class DrawingView extends View{
 	
 	private void setupDrawing()
 	{
-		brushSize = getResources().getInteger(R.integer.medium_size);
+		brushSize = getResources().getInteger(R.integer.small_size);
 		lastBrushSize = brushSize;
 		
 		drawPath = new Path();

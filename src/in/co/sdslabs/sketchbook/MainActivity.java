@@ -3,7 +3,6 @@ package in.co.sdslabs.sketchbook;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,9 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -83,17 +80,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	
-		
-		switch(item.getItemId())
-		{
-		case R.id.toolbox :
-		}
-		return super.onOptionsItemSelected(item);
-		
-	}
+
 
 	@Override
 	public void onClick(View v) {
