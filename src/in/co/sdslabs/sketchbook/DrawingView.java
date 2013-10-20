@@ -19,7 +19,6 @@ public class DrawingView extends View{
 	private Canvas canvas;
 	private Bitmap bmp;
 	
-
 	public DrawingView(Context context , AttributeSet attr) {
 		super(context , attr);
 		setupDrawing();
