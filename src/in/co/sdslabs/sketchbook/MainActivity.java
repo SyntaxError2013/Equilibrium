@@ -12,13 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
 	private DrawingView drawView;
 	
-	Button newFile , brush , eraser , saveFile ; 
+	ImageButton newFile , brush , eraser , saveFile ; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		
 		drawView = (DrawingView) findViewById(R.id.drawing);
+		
+		newFile = (ImageButton) findViewById(R.id.newFile);
+		saveFile = (ImageButton) findViewById(R.id.saveFile);
+		brush = (ImageButton) findViewById(R.id.brush);
+		eraser = (ImageButton) findViewById(R.id.eraser);
+		
+		newFile.setOnClickListener(this);
+		saveFile.setOnClickListener(this);
+		brush.setOnClickListener(this);
+		eraser.setOnClickListener(this);
 	}
 
 	@Override
@@ -85,6 +96,41 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		
+		switch(v.getId())
+		{
+		case R.id.newFile : 
+		{
+			AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
+			newDialog.setTitle("New drawing");
+			newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
+			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+			    public void onClick(DialogInterface dialog, int which){
+			        drawView.startNew();
+			        dialog.dismiss();
+			    }
+			});
+			newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+			    public void onClick(DialogInterface dialog, int which){
+			        dialog.cancel();
+			    }
+			});
+			newDialog.show();
+		}
+		case R.id.saveFile :
+		{
+			
+		}
+		case R.id.brush :
+		{
+			
+		}
+		case R.id.eraser :
+		{
+			
+		}
+		
+		}
 		
 		
 		
