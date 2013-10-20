@@ -139,6 +139,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			    public void onClick(View v) {
 			        drawView.setBrushSize(smallBrush);
 			        drawView.setLastBrushSize(smallBrush);
+			        drawView.setErase(false);
 			        brushDialog.dismiss();
 			    }
 			});
@@ -149,6 +150,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			    public void onClick(View v) {
 			        drawView.setBrushSize(mediumBrush);
 			        drawView.setLastBrushSize(mediumBrush);
+			        drawView.setErase(false);
 			        brushDialog.dismiss();
 			    }
 			});
@@ -159,6 +161,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			    public void onClick(View v) {
 			        drawView.setBrushSize(largeBrush);
 			        drawView.setLastBrushSize(largeBrush);
+			        drawView.setErase(false);
 			        brushDialog.dismiss();
 			    }
 			});
@@ -169,8 +172,39 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 		case R.id.eraser :
 		{
+			final Dialog brushDialog = new Dialog(this);
+			brushDialog.setTitle("Eraser size:");
+			brushDialog.setContentView(R.layout.brush_chooser);
 			
+			ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+			smallBtn.setOnClickListener(new OnClickListener(){
+			    @Override
+			    public void onClick(View v) {
+			        drawView.setErase(true);
+			        drawView.setBrushSize(smallBrush);			    
+			        brushDialog.dismiss();
+			    }
+			});
+			ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+			mediumBtn.setOnClickListener(new OnClickListener(){
+			    @Override
+			    public void onClick(View v) {
+			        drawView.setErase(true);
+			        drawView.setBrushSize(mediumBrush);
+			        brushDialog.dismiss();
+			    }
+			});
+			ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+			largeBtn.setOnClickListener(new OnClickListener(){
+			    @Override
+			    public void onClick(View v) {
+			        drawView.setErase(true);
+			        drawView.setBrushSize(largeBrush);			        
+			        brushDialog.dismiss();
+			    }
+			});
 			
+			brushDialog.show();
 			
 			break;
 		}
