@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -53,10 +52,36 @@ public class MainActivity extends Activity implements OnClickListener{
 		switch(item.getItemId())
 		{
 		case R.id.toolbox :
-			
-			
-		case R.id.save_image :
-			
+		}
+		return super.onOptionsItemSelected(item);
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		
+		switch(v.getId())
+		{
+		case R.id.newFile : 
+		{
+			AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
+			newDialog.setTitle("New drawing");
+			newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
+			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+			    public void onClick(DialogInterface dialog, int which){
+			        drawView.startNew();
+			        dialog.dismiss();
+			    }
+			});
+			newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+			    public void onClick(DialogInterface dialog, int which){
+			        dialog.cancel();
+			    }
+			});
+			newDialog.show();
+		}
+		case R.id.saveFile :
+		{
 			AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
 			saveDialog.setTitle("Save drawing");
 			saveDialog.setMessage("Save drawing to device Gallery?");
@@ -88,37 +113,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			    }
 			});
 			saveDialog.show();
-		
-		}
-		return super.onOptionsItemSelected(item);
-		
-	}
-
-	@Override
-	public void onClick(View v) {
-		
-		switch(v.getId())
-		{
-		case R.id.newFile : 
-		{
-			AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
-			newDialog.setTitle("New drawing");
-			newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
-			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
-			    public void onClick(DialogInterface dialog, int which){
-			        drawView.startNew();
-			        dialog.dismiss();
-			    }
-			});
-			newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-			    public void onClick(DialogInterface dialog, int which){
-			        dialog.cancel();
-			    }
-			});
-			newDialog.show();
-		}
-		case R.id.saveFile :
-		{
 			
 		}
 		case R.id.brush :
